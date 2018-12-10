@@ -7,7 +7,6 @@ import java.util.HashMap;
 
 public class ImmowebQuery {
 
-  private static String API_URL = "https://apigw.immoweb.be/classifieds";
   private String country = "BE";
   private ArrayList<String> postalCodes = new ArrayList<String>() {{
     add("4000");
@@ -19,8 +18,8 @@ public class ImmowebQuery {
   private boolean isSoldOrRented = false;
   private long maxPrice = 150000;
   private long minPrice = 1;
-  private Integer rangeMin = 9;
-  private Integer rangeMax = 10;
+  private Integer rangeMin = 1;
+  private Integer rangeMax = 999;
   private Integer maxBedroomCount = 3;
   private Integer minBedroomCount = 1;
   private PriceTypeEnum priceType;
@@ -91,7 +90,7 @@ public class ImmowebQuery {
     params.put("transactionTypes", this.transactionTypes.name());
     params.put("maxBedroomCount", String.valueOf(this.maxBedroomCount));
     params.put("minBedroomCount", String.valueOf(this.minBedroomCount));
-    return API_URL + "?" + this.paramsGenerator(params);
+    return "?" + this.paramsGenerator(params);
   }
 
   private String paramsGenerator(HashMap<String, String> params) {

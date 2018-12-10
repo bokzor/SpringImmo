@@ -1,10 +1,10 @@
 {
-  "flagsAndStatistics": {
-    "flags": {
-      "isALifeAnnuitySale": false,
-      "isANewlyPublishedClassified": true,
-      "isAPublicSale": false,
-      "isNewlyBuilt": false
+  "l1": {
+    "l2": {
+      "enum": "APARTMENT",
+      "boolean": true,
+      "integer": 6,
+      "string": "test"
     }
   }
 }

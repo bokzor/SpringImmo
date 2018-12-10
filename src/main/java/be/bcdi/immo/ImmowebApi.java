@@ -10,7 +10,7 @@ import java.net.URL;
 
 @Service
 public class ImmowebApi {
-
+  private static String API_URL = "https://apigw.immoweb.be/classifieds";
 
   private ObjectMapper mapper;
 
@@ -20,7 +20,7 @@ public class ImmowebApi {
 
   ImmowebProperty[] search(ImmowebQuery query) throws IOException {
 
-    URL url = new URL(query.getQuery());
+    URL url = new URL(API_URL + query.getQuery());
     HttpURLConnection connection;
 
     connection = (HttpURLConnection) url.openConnection();
