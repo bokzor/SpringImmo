@@ -1,0 +1,217 @@
+[
+  {
+    "customers": [
+      {
+        "publicInfo": {
+          "logoUrl": "https://static.immoweb.be/logos/2778803.gif?cache=2018340909133",
+          "name": "Immobilière Xavier Bertrand"
+        }
+      }
+    ],
+    "flagsAndStatistics": {
+      "flags": {
+        "isALifeAnnuitySale": false,
+        "isANewlyPublishedClassified": true,
+        "isAPublicSale": false,
+        "isNewlyBuilt": false
+      }
+    },
+    "id": 7859339,
+    "media": {
+      "pictures": {
+        "items": [
+          {
+            "orientation": "LANDSCAPE",
+            "relativeUrl": {
+              "large": "7859339_1.jpg?cache=20181129140414",
+              "medium": "M_7859339_1.jpg?cache=20181129140414",
+              "small": "7859339_1.gif?cache=20181129140414"
+            }
+          },
+          {
+            "orientation": "LANDSCAPE",
+            "relativeUrl": {
+              "large": "7859339_2.jpg?cache=20181129140414",
+              "medium": "M_7859339_2.jpg?cache=20181129140414",
+              "small": "7859339_2.gif?cache=20181129140414"
+            }
+          },
+          {
+            "orientation": "LANDSCAPE",
+            "relativeUrl": {
+              "large": "7859339_3.jpg?cache=20181129140414",
+              "medium": "M_7859339_3.jpg?cache=20181129140414",
+              "small": "7859339_3.gif?cache=20181129140414"
+            }
+          }
+        ],
+        "baseUrl": "https://static.immoweb.be/photos/0/7/8/5/9/3/3/9/"
+      }
+    },
+    "property": {
+      "bedroom": {
+        "count": 2
+      },
+      "land": {
+        "surface": 0
+      },
+      "livingDescription": {
+        "netHabitableSurface": 93
+      },
+      "location": {
+        "address": {
+          "country": "Belgium",
+          "district": "Liège",
+          "floor": 2,
+          "locality": "Liège",
+          "number": "7, 2",
+          "postalCode": "4000",
+          "province": "Liège",
+          "region": "Wallonie",
+          "regionCode": "WALLONIE",
+          "street": "Boulevard Saucy"
+        },
+        "geoPoint": {
+          "latitude": 50.6409538,
+          "longitude": 5.5792311
+        }
+      },
+      "subtype": "APARTMENT",
+      "title": "Apartment",
+      "alternativeTitles": {
+        "fr": "Magnifique appartement 2 chambres",
+        "nl": "Appartement"
+      },
+      "type": "APARTMENT"
+    },
+    "publication": {
+      "lastModificationDate": "2018-11-29T13:59:51.897+0000",
+      "visualisationOption": "XL"
+    },
+    "transaction": {
+      "certificates": {
+        "epc": {
+          "score": "C",
+          "logoUrl": "https://static.immoweb.be/pics/peb/peb_c.png"
+        }
+      },
+      "rental": {
+        "monthlyRentalPrice": 570
+      },
+      "segment": "RESIDENTIAL",
+      "soldOrRented": {
+        "isSoldOrRented": false
+      },
+      "subtype": "RENT_REGULAR",
+      "type": "FOR_RENT"
+    }
+  },
+  {
+    "customers": [
+      {
+        "publicInfo": {
+          "logoUrl": "https://static.immoweb.be/logos/2778803.gif?cache=2018340909133",
+          "name": "Immobilière Xavier Bertrand"
+        }
+      }
+    ],
+    "flagsAndStatistics": {
+      "flags": {
+        "isALifeAnnuitySale": false,
+        "isANewlyPublishedClassified": true,
+        "isAPublicSale": false,
+        "isNewlyBuilt": false
+      }
+    },
+    "id": 7854029,
+    "media": {
+      "pictures": {
+        "items": [
+          {
+            "orientation": "LANDSCAPE",
+            "relativeUrl": {
+              "large": "7854029_1.jpg?cache=20181126165420",
+              "medium": "M_7854029_1.jpg?cache=20181126165420",
+              "small": "7854029_1.gif?cache=20181126165420"
+            }
+          },
+          {
+            "orientation": "LANDSCAPE",
+            "relativeUrl": {
+              "large": "7854029_2.jpg?cache=20181126165420",
+              "medium": "M_7854029_2.jpg?cache=20181126165420",
+              "small": "7854029_2.gif?cache=20181126165420"
+            }
+          },
+          {
+            "orientation": "LANDSCAPE",
+            "relativeUrl": {
+              "large": "7854029_3.jpg?cache=20181126165420",
+              "medium": "M_7854029_3.jpg?cache=20181126165420",
+              "small": "7854029_3.gif?cache=20181126165420"
+            }
+          }
+        ],
+        "baseUrl": "https://static.immoweb.be/photos/0/7/8/5/4/0/2/9/"
+      }
+    },
+    "property": {
+      "bedroom": {
+        "count": 3
+      },
+      "land": {
+        "surface": 0
+      },
+      "livingDescription": {
+        "netHabitableSurface": 120
+      },
+      "location": {
+        "address": {
+          "box": " 62",
+          "country": "Belgium",
+          "district": "Liège",
+          "floor": 6,
+          "locality": "Liège",
+          "number": "89",
+          "postalCode": "4000",
+          "province": "Liège",
+          "region": "Wallonie",
+          "regionCode": "WALLONIE",
+          "street": "Boulevard Emile de Laveleye"
+        },
+        "geoPoint": {
+          "latitude": 50.6244578,
+          "longitude": 5.5860514
+        }
+      },
+      "subtype": "APARTMENT",
+      "title": "Apartment",
+      "alternativeTitles": {
+        "fr": "Appartement",
+        "nl": "Appartement"
+      },
+      "type": "APARTMENT"
+    },
+    "publication": {
+      "lastModificationDate": "2018-11-26T16:48:49.960+0000",
+      "visualisationOption": "XL"
+    },
+    "transaction": {
+      "certificates": {
+        "epc": {
+          "score": "E",
+          "logoUrl": "https://static.immoweb.be/pics/peb/peb_e.png"
+        }
+      },
+      "rental": {
+        "monthlyRentalPrice": 700
+      },
+      "segment": "RESIDENTIAL",
+      "soldOrRented": {
+        "isSoldOrRented": false
+      },
+      "subtype": "RENT_REGULAR",
+      "type": "FOR_RENT"
+    }
+  }
+]
