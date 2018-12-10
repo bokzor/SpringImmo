@@ -22,7 +22,7 @@ public class JsonUtilsTest {
     String json = getFileContent("data/nested.json");
     ObjectMapper mapper = new ObjectMapper();
     Map<String, Object> map =  mapper.readValue(json, new TypeReference<Map<String, Object>>(){});
-    Optional<Boolean> result = get(map, "flagsAndStatistics.isALifeAnnuitySale", Boolean.class);
+    Optional<Boolean> result = get(map, "flagsAndStatistics.flags.isALifeAnnuitySale", Boolean.class);
   }
 
   private String getFileContent(String fileName) throws IOException {
