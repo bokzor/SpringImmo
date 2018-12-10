@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.util.Map;
 import java.util.Optional;
 
+import static be.bcdi.immo.utils.JsonUtils.get;
 import static org.junit.Assert.*;
 
 public class JsonUtilsTest {
@@ -21,7 +22,7 @@ public class JsonUtilsTest {
     String json = getFileContent("data/nested.json");
     ObjectMapper mapper = new ObjectMapper();
     Map<String, Object> map =  mapper.readValue(json, new TypeReference<Map<String, Object>>(){});
-    Optional<Boolean> JsonUtils.get(map, "flagsAndStatistics.isALifeAnnuitySale", Boolean.class);
+    Optional<Boolean> result = get(map, "flagsAndStatistics.isALifeAnnuitySale", Boolean.class);
   }
 
   private String getFileContent(String fileName) throws IOException {
