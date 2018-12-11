@@ -2,6 +2,7 @@ package be.bcdi.immo.scrapers;
 
 import be.bcdi.immo.enums.PebEnum;
 import be.bcdi.immo.enums.PropertyTypeEnum;
+import be.bcdi.immo.enums.SourceEnum;
 import be.bcdi.immo.utils.JsonUtils;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,15 +15,16 @@ import java.util.Optional;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ImmowebProperty {
     Integer id;
-    Optional<Integer> bedroomCount;
-    Optional<Integer> landSurface;
-    Optional<Integer> netHabitableSurface;
+    Integer bedroomCount;
+    Integer landSurface;
+    Integer netHabitableSurface;
     ImmowebAddress immowebAddress;
     Optional<Integer> price;
     Optional<Integer> monthlyRentalPrice;
     TransactionTypeEnum transactionType;
     PropertyTypeEnum propertyType;
     Optional<PebEnum> peb;
+    SourceEnum source = SourceEnum.IMMOWEB;
 
     ImmowebProperty() {
         this.immowebAddress = new ImmowebAddress();
@@ -31,9 +33,9 @@ public class ImmowebProperty {
     @SuppressWarnings("unchecked")
     @JsonProperty("property")
     private void unpackProperty(Map<String, Object> property) throws InstantiationException, IllegalAccessException {
-        this.bedroomCount = JsonUtils.get(property, "bedroom.count", Integer.class);
-        this.landSurface = JsonUtils.get(property, "land.surface", Integer.class);
-        this.netHabitableSurface = JsonUtils.get(property, "livingDescription.netHabitableSurface", Integer.class);
+        this.bedroomCount = JsonUtils.get(property, "bedroom.count", Integer.class).orElse(0);
+        this.landSurface = JsonUtils.get(property, "land.surface", Integer.class).orElse(0);
+        this.netHabitableSurface = JsonUtils.get(property, "livingDescription.netHabitableSurface", Integer.class).orElse(0);
         this.propertyType = PropertyTypeEnum.valueOf((String) property.get("type"));
 
         this.immowebAddress.latitude = JsonUtils.get(property, "location.geoPoint.latitude", Double.class);

@@ -3,15 +3,18 @@ package be.bcdi.immo.entities;
 import be.bcdi.immo.enums.PebEnum;
 import be.bcdi.immo.enums.PropertyTypeEnum;
 import be.bcdi.immo.enums.SourceEnum;
+import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.Optional;
 
 @Entity
 @Table(name = "immo_property")
+@Data
 public class ImmoProperty {
 
     @Id
@@ -43,7 +46,7 @@ public class ImmoProperty {
     PropertyTypeEnum propertyType;
 
     @Enumerated(EnumType.STRING)
-    PebEnum peb;
+    Optional<PebEnum> peb;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)
