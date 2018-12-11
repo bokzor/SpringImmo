@@ -19,11 +19,11 @@ public class ImmowebProperty {
     Integer landSurface;
     Integer netHabitableSurface;
     ImmowebAddress immowebAddress;
-    Optional<Integer> price;
-    Optional<Integer> monthlyRentalPrice;
+    Integer price;
+    Integer monthlyRentalPrice;
     TransactionTypeEnum transactionType;
     PropertyTypeEnum propertyType;
-    Optional<PebEnum> peb;
+    PebEnum peb = null;
     SourceEnum source = SourceEnum.IMMOWEB;
 
     ImmowebProperty() {
@@ -51,13 +51,15 @@ public class ImmowebProperty {
     @SuppressWarnings("unchecked")
     @JsonProperty("transaction")
     private void unpackTransaction(Map<String, Object> transaction) throws InstantiationException, IllegalAccessException {
-        this.peb = JsonUtils.get(transaction, "certificates.epc.score", PebEnum.class);
+        this.peb = JsonUtils.get(transaction, "certificates.epc.score", PebEnum.class).orElse(null);
         this.transactionType = TransactionTypeEnum.valueOf((String) transaction.get("type"));
 
         if (this.transactionType == TransactionTypeEnum.FOR_RENT) {
-            this.monthlyRentalPrice = JsonUtils.get(transaction, "rental.monthlyRentalPrice", Integer.class);
+            this.monthlyRentalPrice = JsonUtils.get(transaction, "rental.monthlyRentalPrice", Integer.class).get();
+            this.price = null;
         } else if (this.transactionType == TransactionTypeEnum.FOR_SALE) {
-            this.price = JsonUtils.get(transaction, "sale.price", Integer.class);
+            this.price = JsonUtils.get(transaction, "sale.price", Integer.class).get();
+            this.monthlyRentalPrice = null;
         }
     }
 

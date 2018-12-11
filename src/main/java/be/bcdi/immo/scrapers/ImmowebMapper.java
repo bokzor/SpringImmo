@@ -8,11 +8,11 @@ import org.mapstruct.Named;
 
 import java.util.Optional;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ImmowebMapper {
     @Mappings({
-         //   @Mapping(target = "id", source = "entity.sourceId"),
-           // @Mapping(target = "source", source = "entity.source"),
+            //   @Mapping(target = "id", source = "entity.sourceId"),
+            // @Mapping(target = "source", source = "entity.source"),
     })
     ImmowebProperty propertyToImmowebDTO(ImmoProperty entity);
 
@@ -28,7 +28,4 @@ public interface ImmowebMapper {
             @Mapping(target = "peb", source = "dto.peb"),
     })
     ImmoProperty immowebDTOtoProperty(ImmowebProperty dto);
-
-
-
 }

@@ -1,6 +1,9 @@
 package be.bcdi.immo.scrapers;
 
+import be.bcdi.immo.entities.ImmoProperty;
+import be.bcdi.immo.enums.PropertyTypeEnum;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.var;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -12,6 +15,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Service
 public class ImmowebApi {
@@ -21,9 +29,11 @@ public class ImmowebApi {
     private static String API_URL = "https://apigw.immoweb.be/classifieds";
 
     private ObjectMapper mapper;
+    private ImmowebMapper immowebMapper;
 
-    ImmowebApi(ObjectMapper mapper) {
+    ImmowebApi(ObjectMapper mapper, ImmowebMapper immowebMapper) {
         this.mapper = mapper;
+        this.immowebMapper = immowebMapper;
     }
 
     ImmowebProperty[] search(ImmowebQuery query) throws IOException {
@@ -59,5 +69,15 @@ public class ImmowebApi {
         }
 
         return new ImmowebProperty[0]; // Empty
+    }
+
+    public void go() throws IOException {
+        ImmowebQuery immowebQuery = new ImmowebQuery(ImmowebProperty.TransactionTypeEnum.FOR_RENT, PropertyTypeEnum.APARTMENT);
+        immowebQuery.addPostalCode("4000");
+        var results = new ImmowebApi(new ObjectMapper(), immowebMapper).search(immowebQuery);
+        List<ImmoProperty> properties = Arrays.stream(results).map(immowebMapper::immowebDTOtoProperty).collect(Collectors.toList());
+        for(ImmoProperty property: properties) {
+            property.getId();
+        }
     }
 }

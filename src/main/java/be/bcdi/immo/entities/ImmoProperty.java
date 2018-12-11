@@ -46,7 +46,7 @@ public class ImmoProperty {
     PropertyTypeEnum propertyType;
 
     @Enumerated(EnumType.STRING)
-    Optional<PebEnum> peb;
+    PebEnum peb;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)
