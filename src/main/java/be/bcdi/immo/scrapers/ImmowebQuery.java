@@ -1,5 +1,6 @@
-package be.bcdi.immo;
+package be.bcdi.immo.scrapers;
 
+import be.bcdi.immo.enums.PropertyTypeEnum;
 import lombok.var;
 
 import java.util.ArrayList;
@@ -12,20 +13,20 @@ public class ImmowebQuery {
     add("4000");
     add("4020");
   }};
-  private ImmowebProperty.PropertyTypeEnum propertyType;
+  private PropertyTypeEnum propertyType;
   private boolean isALifeAnnuitySale = false;
   private boolean isNewlyBuilt = false;
   private boolean isSoldOrRented = false;
   private long maxPrice = 150000;
   private long minPrice = 1;
   private Integer rangeMin = 1;
-  private Integer rangeMax = 999;
+  private Integer rangeMax = 10;
   private Integer maxBedroomCount = 3;
   private Integer minBedroomCount = 1;
   private PriceTypeEnum priceType;
   private ImmowebProperty.TransactionTypeEnum transactionTypes;
 
-  ImmowebQuery(ImmowebProperty.TransactionTypeEnum transactionTypes, ImmowebProperty.PropertyTypeEnum propertyType) {
+  ImmowebQuery(ImmowebProperty.TransactionTypeEnum transactionTypes, PropertyTypeEnum propertyType) {
     this.setTransactionType(transactionTypes);
     this.setPropertyType(propertyType);
   }
@@ -40,7 +41,7 @@ public class ImmowebQuery {
     return this;
   }
 
-  public ImmowebQuery setPropertyType(ImmowebProperty.PropertyTypeEnum propertyTypeEnum) {
+  public ImmowebQuery setPropertyType(PropertyTypeEnum propertyTypeEnum) {
     this.propertyType = propertyTypeEnum;
     return this;
   }

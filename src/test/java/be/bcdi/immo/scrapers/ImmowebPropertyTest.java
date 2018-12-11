@@ -1,5 +1,6 @@
-package be.bcdi.immo;
+package be.bcdi.immo.scrapers;
 
+import be.bcdi.immo.scrapers.ImmowebProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Value;

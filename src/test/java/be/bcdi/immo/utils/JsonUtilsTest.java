@@ -1,6 +1,6 @@
 package be.bcdi.immo.utils;
 
-import be.bcdi.immo.ImmowebProperty;
+import be.bcdi.immo.enums.PropertyTypeEnum;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
@@ -37,7 +37,7 @@ public class JsonUtilsTest {
 
     @Test
     public void shouldConvertEnum() throws InstantiationException, IllegalAccessException {
-        Optional<ImmowebProperty.PropertyTypeEnum> resultEnum = get(mapped, "l1.l2.enum", ImmowebProperty.PropertyTypeEnum.class);
+        Optional<PropertyTypeEnum> resultEnum = get(mapped, "l1.l2.enum", PropertyTypeEnum.class);
         assert (resultEnum.isPresent());
     }
 
