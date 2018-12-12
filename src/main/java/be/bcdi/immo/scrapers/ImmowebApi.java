@@ -2,6 +2,7 @@ package be.bcdi.immo.scrapers;
 
 import be.bcdi.immo.entities.ImmoProperty;
 import be.bcdi.immo.enums.PropertyTypeEnum;
+import be.bcdi.immo.repositories.ImmoPropertyRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.var;
 import org.slf4j.Logger;
@@ -30,10 +31,12 @@ public class ImmowebApi {
 
     private ObjectMapper mapper;
     private ImmowebMapper immowebMapper;
+    private ImmoPropertyRepository immoPropertyRepository;
 
-    ImmowebApi(ObjectMapper mapper, ImmowebMapper immowebMapper) {
+    ImmowebApi(ObjectMapper mapper, ImmowebMapper immowebMapper, ImmoPropertyRepository immoPropertyRepository) {
         this.mapper = mapper;
         this.immowebMapper = immowebMapper;
+        this.immoPropertyRepository = immoPropertyRepository;
     }
 
     ImmowebProperty[] search(ImmowebQuery query) throws IOException {
@@ -74,10 +77,13 @@ public class ImmowebApi {
     public void go() throws IOException {
         ImmowebQuery immowebQuery = new ImmowebQuery(ImmowebProperty.TransactionTypeEnum.FOR_RENT, PropertyTypeEnum.APARTMENT);
         immowebQuery.addPostalCode("4000");
-        var results = new ImmowebApi(new ObjectMapper(), immowebMapper).search(immowebQuery);
+        var results = this.search(immowebQuery);
         List<ImmoProperty> properties = Arrays.stream(results).map(immowebMapper::immowebDTOtoProperty).collect(Collectors.toList());
-        for(ImmoProperty property: properties) {
+        for (ImmoProperty property : properties) {
             property.getId();
         }
+        this.immoPropertyRepository.saveAll(properties);
+
     }
+
 }

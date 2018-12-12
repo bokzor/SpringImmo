@@ -4,15 +4,11 @@ import be.bcdi.immo.entities.ImmoProperty;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import org.mapstruct.Named;
-
-import java.util.Optional;
 
 @Mapper(componentModel = "spring", uses = ImmowebAddressMapper.class)
 public interface ImmowebMapper {
     @Mappings({
-            //   @Mapping(target = "id", source = "entity.sourceId"),
-            // @Mapping(target = "source", source = "entity.source"),
+
     })
     ImmowebProperty propertyToImmowebDTO(ImmoProperty entity);
 

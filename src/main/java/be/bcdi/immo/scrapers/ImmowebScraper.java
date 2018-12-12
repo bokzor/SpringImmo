@@ -6,4 +6,5 @@ public class ImmowebScraper {
     public void insertOrUpdateProperty() {
 
     }
+
 }
