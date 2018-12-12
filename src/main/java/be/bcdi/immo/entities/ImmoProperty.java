@@ -17,45 +17,34 @@ import java.util.Optional;
 @Data
 public class ImmoProperty {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @NotNull
+  @Enumerated(EnumType.STRING)
+  SourceEnum source;
+  @NotNull
+  String sourceId;
+  Integer bedroomCount;
+  Integer landSurface;
+  Integer netHabitableSurface;
+  Integer sellingPrice;
+  Integer rentingPrice;
+  @Enumerated(EnumType.STRING)
+  PropertyTypeEnum propertyType;
+  @Enumerated(EnumType.STRING)
+  PebEnum peb;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "address_id", referencedColumnName = "id")
+  private ImmoAddress address;
+  @Temporal(TemporalType.TIMESTAMP)
+  @Column(name = "created_at", nullable = false, updatable = false)
+  @CreatedDate
+  private Date createdAt;
 
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    SourceEnum source;
-
-    @NotNull
-    String sourceId;
-
-    Integer bedroomCount;
-
-    Integer landSurface;
-
-    Integer netHabitableSurface;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
-    private ImmoAddress address;
-
-    Integer sellingPrice;
-
-    Integer rentingPrice;
-
-    @Enumerated(EnumType.STRING)
-    PropertyTypeEnum propertyType;
-
-    @Enumerated(EnumType.STRING)
-    PebEnum peb;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at", nullable = false, updatable = false)
-    @CreatedDate
-    private Date createdAt;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at", nullable = false)
-    @LastModifiedDate
-    private Date updatedAt;
+  @Temporal(TemporalType.TIMESTAMP)
+  @Column(name = "updated_at", nullable = false)
+  @LastModifiedDate
+  private Date updatedAt;
 
 }

@@ -14,4 +14,5 @@ public class ImmowebAddress {
   Optional<String> number;
   Optional<Integer> floor;
   Optional<String> country;
+
 }
