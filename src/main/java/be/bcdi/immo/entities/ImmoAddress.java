@@ -1,6 +1,8 @@
 package be.bcdi.immo.entities;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -11,7 +13,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "immo_address")
-@Data
+@Getter
+@Setter
 @EntityListeners(AuditingEntityListener.class)
 public class ImmoAddress {
     Double latitude;

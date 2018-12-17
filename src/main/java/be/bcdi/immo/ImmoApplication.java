@@ -1,6 +1,7 @@
 package be.bcdi.immo;
 
 import be.bcdi.immo.scrapers.ImmowebApi;
+import be.bcdi.immo.stats.ImmoStatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,7 +17,7 @@ import java.io.IOException;
 public class ImmoApplication {
 
     @Autowired
-    ImmowebApi immowebApi;
+    ImmoStatService immoStatService;
 
     public static void main(String[] args) {
         SpringApplication.run(ImmoApplication.class, args);
@@ -24,7 +25,7 @@ public class ImmoApplication {
 
     @PostConstruct
     void postConstruct() throws IOException {
-        this.immowebApi.go();
+        this.immoStatService.getStat();
     }
 
 }

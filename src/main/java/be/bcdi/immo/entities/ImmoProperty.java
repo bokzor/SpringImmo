@@ -4,6 +4,8 @@ import be.bcdi.immo.enums.PebEnum;
 import be.bcdi.immo.enums.PropertyTypeEnum;
 import be.bcdi.immo.enums.SourceEnum;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -17,7 +19,8 @@ import java.util.Optional;
 
 @Entity
 @Table(name = "immo_property")
-@Data
+@Getter
+@Setter
 @EntityListeners(AuditingEntityListener.class)
 @IdClass(ImmoProperty.SourceId.class)
 public class ImmoProperty {
@@ -37,6 +40,8 @@ public class ImmoProperty {
     Integer bedroomCount;
     Integer landSurface;
     Integer netHabitableSurface;
+
+
     Integer sellingPrice;
     Integer rentingPrice;
 

@@ -14,16 +14,17 @@ public class ImmowebQuery {
         add("4020");
     }};
     private PropertyTypeEnum propertyType;
-    private boolean isALifeAnnuitySale = false;
+    private boolean isALifeAnnuitySale;
     private boolean isNewlyBuilt = false;
     private boolean isSoldOrRented = false;
-    private long maxPrice = 150000;
-    private long minPrice = 1;
+   private long maxPrice = 150000;
+    private long minPrice;
     private Integer rangeMin = 1;
-    private Integer rangeMax = 20;
+    private Integer rangeMax = 999;
     private Integer maxBedroomCount = 3;
-    private Integer minBedroomCount = 1;
+    private Integer minBedroomCount = 2;
     private PriceTypeEnum priceType;
+    private ProvinceEnum province;
     private ImmowebProperty.TransactionTypeEnum transactionTypes;
 
     ImmowebQuery(ImmowebProperty.TransactionTypeEnum transactionTypes, PropertyTypeEnum propertyType) {
@@ -33,6 +34,11 @@ public class ImmowebQuery {
 
     public ImmowebQuery setMinBedroomCount(Integer minBedroom) {
         this.minBedroomCount = minBedroom;
+        return this;
+    }
+
+    public ImmowebQuery setProvince(ProvinceEnum province) {
+        this.province = province;
         return this;
     }
 
@@ -80,11 +86,15 @@ public class ImmowebQuery {
     String getQuery() {
         HashMap<String, String> params = new HashMap<>();
         params.put("countries", this.country);
-        params.put("isALifeAnnuitySale", String.valueOf(this.isALifeAnnuitySale));
-        params.put("isNewlyBuilt", String.valueOf(this.isNewlyBuilt));
+       // params.put("isALifeAnnuitySale", String.valueOf(this.isALifeAnnuitySale));
+        //params.put("isNewlyBuilt", String.valueOf(this.isNewlyBuilt));
         params.put("isSoldOrRented", String.valueOf(this.isSoldOrRented));
         params.put("maxPrice", String.valueOf(this.maxPrice));
-        params.put("postalCodes", String.join(",", this.postalCodes));
+        if(this.province == null) {
+            params.put("postalCodes", String.join(",", this.postalCodes));
+        } else {
+            params.put("provinces",this.province.name());
+        }
         params.put("priceType", this.priceType.name());
         params.put("propertyTypes", this.propertyType.name());
         params.put("range", this.getRange());
@@ -97,7 +107,7 @@ public class ImmowebQuery {
     private String paramsGenerator(HashMap<String, String> params) {
         StringBuilder appendedParams = new StringBuilder();
         for (var setValue : params.entrySet()) {
-            if (setValue.getValue() != null) {
+            if (setValue.getValue() != null && !setValue.getValue().isEmpty()) {
                 appendedParams.append(setValue.getKey()).append("=").append(setValue.getValue()).append("&");
             }
         }
@@ -108,6 +118,10 @@ public class ImmowebQuery {
     enum PriceTypeEnum {
         PRICE,
         MONTHLY_RENTAL_PRICE
+    }
+
+    enum ProvinceEnum {
+        LIEGE
     }
 
 

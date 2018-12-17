@@ -33,6 +33,10 @@ public class ImmowebProperty {
     @SuppressWarnings("unchecked")
     @JsonProperty("property")
     private void unpackProperty(Map<String, Object> property) throws InstantiationException, IllegalAccessException {
+        String postalCode = JsonUtils.get(property, "location.address.postalCode", String.class).orElse("0000");
+
+        this.immowebAddress.postalCode = postalCode;
+
         this.bedroomCount = JsonUtils.get(property, "bedroom.count", Integer.class).orElse(0);
         this.landSurface = JsonUtils.get(property, "land.surface", Integer.class).orElse(0);
         this.netHabitableSurface = JsonUtils.get(property, "livingDescription.netHabitableSurface", Integer.class).orElse(0);
@@ -41,7 +45,6 @@ public class ImmowebProperty {
         this.immowebAddress.latitude = JsonUtils.get(property, "location.geoPoint.latitude", Double.class);
         this.immowebAddress.longitude = JsonUtils.get(property, "location.geoPoint.longitude", Double.class);
         this.immowebAddress.street = JsonUtils.get(property, "location.address.street", String.class);
-        this.immowebAddress.postalCode = JsonUtils.get(property, "location.address.postalCode", String.class).get();
         this.immowebAddress.number = JsonUtils.get(property, "location.address.number", String.class);
         this.immowebAddress.locality = JsonUtils.get(property, "location.address.locality", String.class);
         this.immowebAddress.country = JsonUtils.get(property, "location.address.country", String.class);
@@ -55,10 +58,10 @@ public class ImmowebProperty {
         this.transactionType = TransactionTypeEnum.valueOf((String) transaction.get("type"));
 
         if (this.transactionType == TransactionTypeEnum.FOR_RENT) {
-            this.monthlyRentalPrice = JsonUtils.get(transaction, "rental.monthlyRentalPrice", Integer.class).get();
+            this.monthlyRentalPrice = JsonUtils.get(transaction, "rental.monthlyRentalPrice", Integer.class).orElse(0);
             this.price = null;
         } else if (this.transactionType == TransactionTypeEnum.FOR_SALE) {
-            this.price = JsonUtils.get(transaction, "sale.price", Integer.class).get();
+            this.price = JsonUtils.get(transaction, "sale.price", Integer.class).orElse(0);
             this.monthlyRentalPrice = null;
         }
     }

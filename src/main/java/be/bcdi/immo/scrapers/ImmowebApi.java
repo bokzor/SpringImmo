@@ -2,6 +2,8 @@ package be.bcdi.immo.scrapers;
 
 import be.bcdi.immo.entities.ImmoProperty;
 import be.bcdi.immo.enums.PropertyTypeEnum;
+import be.bcdi.immo.enums.SourceEnum;
+import be.bcdi.immo.repositories.ImmoPropertyJpaRepository;
 import be.bcdi.immo.repositories.ImmoPropertyRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.var;
@@ -9,17 +11,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collector;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,11 +32,13 @@ public class ImmowebApi {
     private ObjectMapper mapper;
     private ImmowebMapper immowebMapper;
     private ImmoPropertyRepository immoPropertyRepository;
+    private ImmoPropertyJpaRepository immoPropertyJpaRepository;
 
-    ImmowebApi(ObjectMapper mapper, ImmowebMapper immowebMapper, ImmoPropertyRepository immoPropertyRepository) {
+    ImmowebApi(ObjectMapper mapper, ImmowebMapper immowebMapper, ImmoPropertyRepository immoPropertyRepository, ImmoPropertyJpaRepository immoPropertyJpaRepository) {
         this.mapper = mapper;
         this.immowebMapper = immowebMapper;
         this.immoPropertyRepository = immoPropertyRepository;
+        this.immoPropertyJpaRepository = immoPropertyJpaRepository;
     }
 
     ImmowebProperty[] search(ImmowebQuery query) throws IOException {
@@ -75,14 +77,12 @@ public class ImmowebApi {
     }
 
     public void go() throws IOException {
-        ImmowebQuery immowebQuery = new ImmowebQuery(ImmowebProperty.TransactionTypeEnum.FOR_RENT, PropertyTypeEnum.APARTMENT);
-        immowebQuery.addPostalCode("4000");
+        ImmowebQuery immowebQuery = new ImmowebQuery(ImmowebProperty.TransactionTypeEnum.FOR_SALE, PropertyTypeEnum.HOUSE);
+        immowebQuery.setProvince(ImmowebQuery.ProvinceEnum.LIEGE);
         var results = this.search(immowebQuery);
         List<ImmoProperty> properties = Arrays.stream(results).map(immowebMapper::immowebDTOtoProperty).collect(Collectors.toList());
-        for (ImmoProperty property : properties) {
-            property.getId();
-        }
         this.immoPropertyRepository.saveAll(properties);
+
 
     }
 
