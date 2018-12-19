@@ -2,8 +2,6 @@ package be.bcdi.immo.repositories;
 
 import be.bcdi.immo.entities.ImmoProperty;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -30,6 +28,13 @@ public class ImmoPropertyRepository {
         return this.immoPropertyJpaRepository.queryRentingPropertyByBedroom(bedroomCount);
     }
 
+    public List<ImmoProperty> queryRentingPropertyWithSurfaceIndicated() {
+        return this.immoPropertyJpaRepository.queryRentingPropertyWithSurfaceIndicated();
+    }
+
+    public List<ImmoProperty> querySellingPropertyWithSurfaceIndicated() {
+        return this.immoPropertyJpaRepository.querySellingPropertyWithSurfaceIndicated();
+    }
 
     public List<ImmoProperty> querySellingPropertyByBedroom(Integer bedroomCount) {
         return this.immoPropertyJpaRepository.querySellingPropertyByBedroom(bedroomCount);

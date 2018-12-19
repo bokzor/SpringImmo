@@ -17,6 +17,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -76,13 +77,38 @@ public class ImmowebApi {
         return new ImmowebProperty[0]; // Empty
     }
 
-    public void go() throws IOException {
-        ImmowebQuery immowebQuery = new ImmowebQuery(ImmowebProperty.TransactionTypeEnum.FOR_SALE, PropertyTypeEnum.HOUSE);
-        immowebQuery.setProvince(ImmowebQuery.ProvinceEnum.LIEGE);
-        var results = this.search(immowebQuery);
-        List<ImmoProperty> properties = Arrays.stream(results).map(immowebMapper::immowebDTOtoProperty).collect(Collectors.toList());
-        this.immoPropertyRepository.saveAll(properties);
+    public void go() throws IOException, InterruptedException {
 
+        for(ImmowebQuery query: getQueries()) {
+            Thread.sleep(10000);
+            var results = this.search(query);
+            List<ImmoProperty> properties = Arrays.stream(results).map(immowebMapper::immowebDTOtoProperty).collect(Collectors.toList());
+            this.immoPropertyRepository.saveAll(properties);
+        }
+
+    }
+
+    public List<ImmowebQuery> getQueries() {
+        ArrayList<ImmowebQuery> queries = new ArrayList<>();
+
+        ImmowebQuery immowebHouseToSaleQuery = new ImmowebQuery(ImmowebProperty.TransactionTypeEnum.FOR_SALE, PropertyTypeEnum.HOUSE);
+        immowebHouseToSaleQuery.setProvince(ImmowebQuery.ProvinceEnum.LIEGE);
+
+        ImmowebQuery immowebHouseToRentQuery = new ImmowebQuery(ImmowebProperty.TransactionTypeEnum.FOR_RENT, PropertyTypeEnum.HOUSE);
+        immowebHouseToRentQuery.setProvince(ImmowebQuery.ProvinceEnum.LIEGE);
+
+        ImmowebQuery immowebFlatToSaleQuery = new ImmowebQuery(ImmowebProperty.TransactionTypeEnum.FOR_SALE, PropertyTypeEnum.APARTMENT);
+        immowebFlatToSaleQuery.setProvince(ImmowebQuery.ProvinceEnum.LIEGE);
+
+        ImmowebQuery immowebFlatToRentQuery = new ImmowebQuery(ImmowebProperty.TransactionTypeEnum.FOR_RENT, PropertyTypeEnum.APARTMENT);
+        immowebFlatToRentQuery.setProvince(ImmowebQuery.ProvinceEnum.LIEGE);
+
+        queries.add(immowebHouseToSaleQuery);
+        queries.add(immowebHouseToRentQuery);
+        queries.add(immowebFlatToSaleQuery);
+        queries.add(immowebFlatToRentQuery);
+
+        return queries;
 
     }
 

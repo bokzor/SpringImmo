@@ -18,10 +18,10 @@ public interface ImmoPropertyJpaRepository extends JpaRepository<ImmoProperty, I
     List<ImmoProperty> querySellingPropertyByBedroom(@Param(value = "bedroomCount") Integer bedroomCount);
 
     @Query(value = "select * from immo_property where net_habitable_surface > 0 and renting_price > 0", nativeQuery = true)
-    List<ImmoProperty> getRentingPropertyWithSurfaceIndicated();
+    List<ImmoProperty> queryRentingPropertyWithSurfaceIndicated();
 
     @Query(value = "select * from immo_property where net_habitable_surface > 0 and selling_price > 0", nativeQuery = true)
-    List<ImmoProperty> getSellingPropertyWithSurfaceIndicated();
+    List<ImmoProperty> querySellingPropertyWithSurfaceIndicated();
 
 
 

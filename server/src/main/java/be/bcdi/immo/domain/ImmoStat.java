@@ -3,6 +3,7 @@ package be.bcdi.immo.domain;
 
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -14,15 +15,14 @@ public class ImmoStat {
     List<ValueByPostalCode> threeRoomsToRent;
     List<ValueByPostalCode> threeRoomsToSale;
 
-    List<ValueByPostalCode> thwoRoomsAvgSellingPrice;
-    List<ValueByPostalCode> thwoRoomsAvgRentingPrice;
+    List<ValueByPostalCode> twoRoomsAvgSellingPrice;
+    List<ValueByPostalCode> twoRoomsAvgRentingPrice;
 
     List<ValueByPostalCode> threeRoomsAvgRentingPrice;
     List<ValueByPostalCode> threeRoomsAvgSellingPrice;
 
-
-    List<ValueByPostalCode> AvgSellingPriceBySurface;
-    List<ValueByPostalCode> AvgRentingPriceBySurface;
+    List<ValueByPostalCode> avgSellingPriceBySurface;
+    List<ValueByPostalCode> avgRentingPriceBySurface;
 
 
 }

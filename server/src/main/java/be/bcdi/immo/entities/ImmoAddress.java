@@ -11,7 +11,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-@Entity
+@Entity(name = "ImmoAddress")
 @Table(name = "immo_address")
 @Getter
 @Setter

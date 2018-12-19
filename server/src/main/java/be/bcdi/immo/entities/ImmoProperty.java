@@ -6,6 +6,8 @@ import be.bcdi.immo.enums.SourceEnum;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -17,11 +19,12 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;
 
-@Entity
+@Entity(name = "ImmoProperty")
 @Table(name = "immo_property")
 @Getter
 @Setter
 @EntityListeners(AuditingEntityListener.class)
+@Audited
 @IdClass(ImmoProperty.SourceId.class)
 public class ImmoProperty {
 
@@ -55,16 +58,19 @@ public class ImmoProperty {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
+    @NotAudited
     private ImmoAddress address;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreatedDate
+    @NotAudited
     private Date createdAt;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at", nullable = false)
     @LastModifiedDate
+    @NotAudited
     private Date updatedAt;
 
     public static class SourceId implements Serializable {

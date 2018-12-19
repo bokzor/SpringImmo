@@ -22,7 +22,6 @@ public class ValueByPostalCode {
 
     public static ValueByPostalCode newLong(Map.Entry<String, Long> entry) {
        return new ValueByPostalCode(entry.getKey(), entry.getValue().doubleValue());
-
     }
 
 }
