@@ -1,0 +1,19 @@
+<div class="center-flex">
+  <div class="mat-elevation-z8" *ngIf="dataSource">
+    <table mat-table [dataSource]="dataSource">
+
+      <ng-container *ngFor="let column of displayedColumns">
+        <ng-container [matColumnDef]="column.key">
+          <th mat-header-cell *matHeaderCellDef >{{column.label}}</th>
+          <td mat-cell *matCellDef="let row"> {{valueGetter(row, column.key)}}</td>
+        </ng-container>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="getColumnsName(); sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: getColumnsName();">
+      </tr>
+    </table>
+
+  </div>
+  <mat-spinner *ngIf="!dataSource"></mat-spinner>
+</div>
