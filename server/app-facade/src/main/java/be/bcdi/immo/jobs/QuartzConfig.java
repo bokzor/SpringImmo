@@ -18,7 +18,6 @@ public class QuartzConfig {
                 .build();
     }
 
-
     @Bean
     public Trigger trigger() {
         return TriggerBuilder.newTrigger().forJob(jobDetail())

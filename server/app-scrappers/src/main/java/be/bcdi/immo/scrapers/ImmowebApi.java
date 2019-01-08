@@ -28,14 +28,10 @@ public class ImmowebApi {
 
     private ObjectMapper mapper;
     private ImmowebMapper immowebMapper;
- //   private ImmoPropertyRepository immoPropertyRepository;
-  //  private ImmoPropertyJpaRepository immoPropertyJpaRepository;
 
     ImmowebApi(ObjectMapper mapper, ImmowebMapper immowebMapper) {
         this.mapper = mapper;
         this.immowebMapper = immowebMapper;
-    //    this.immoPropertyRepository = immoPropertyRepository;
-   //     this.immoPropertyJpaRepository = immoPropertyJpaRepository;
     }
 
     ImmowebProperty[] search(ImmowebQuery query) throws IOException {
@@ -73,15 +69,14 @@ public class ImmowebApi {
         return new ImmowebProperty[0]; // Empty
     }
 
-    public void go() throws IOException, InterruptedException {
-
+    public List<ImmoProperty> go() throws IOException, InterruptedException {
+        List<ImmoProperty> properties = new ArrayList<>();
         for(ImmowebQuery query: getQueries()) {
             Thread.sleep(10000);
             var results = this.search(query);
-            List<ImmoProperty> properties = Arrays.stream(results).map(immowebMapper::immowebDTOtoProperty).collect(Collectors.toList());
-           // this.immoPropertyRepository.saveAll(properties);
+            properties.addAll(Arrays.stream(results).map(immowebMapper::immowebDTOtoProperty).collect(Collectors.toList()));
         }
-
+        return properties;
     }
 
     public List<ImmowebQuery> getQueries() {
